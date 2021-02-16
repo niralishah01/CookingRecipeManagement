@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebClient.ServiceReference1;
 
 namespace WebClient
 {
@@ -12,6 +13,25 @@ namespace WebClient
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string name = TextBox1.Text;
+            string email = TextBox2.Text;
+            string password = TextBox3.Text;
+            WebClient.ServiceReference1.AccountServiceClient proxy = new ServiceReference1.AccountServiceClient("BasicHttpBinding_IAccountService");
+            Users newuser = new Users();
+            newuser.name = name;
+            //u. = name;
+            newuser.email = email;
+            newuser.password = password;
+            //new Users(name, email, password)
+            string msg=proxy.Register(newuser);
+            if (msg == "Registered Successfully..")
+                Response.Redirect("~/Index.aspx");
+            else
+                Label4.Text = "*" + msg;
         }
     }
 }
