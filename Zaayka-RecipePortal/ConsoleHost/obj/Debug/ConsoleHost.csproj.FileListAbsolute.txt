@@ -1,0 +1,11 @@
+F:\B.TechCE\SEM6\SOC\Project\ConsoleHost\bin\Debug\ConsoleHost.exe.config
+F:\B.TechCE\SEM6\SOC\Project\ConsoleHost\bin\Debug\ConsoleHost.exe
+F:\B.TechCE\SEM6\SOC\Project\ConsoleHost\bin\Debug\ConsoleHost.pdb
+F:\B.TechCE\SEM6\SOC\Project\ConsoleHost\bin\Debug\WCFServices.dll
+F:\B.TechCE\SEM6\SOC\Project\ConsoleHost\bin\Debug\WCFServices.pdb
+F:\B.TechCE\SEM6\SOC\Project\ConsoleHost\bin\Debug\WCFServices.dll.config
+F:\B.TechCE\SEM6\SOC\Project\ConsoleHost\obj\Debug\ConsoleHost.csprojAssemblyReference.cache
+F:\B.TechCE\SEM6\SOC\Project\ConsoleHost\obj\Debug\ConsoleHost.csproj.CoreCompileInputs.cache
+F:\B.TechCE\SEM6\SOC\Project\ConsoleHost\obj\Debug\ConsoleHost.csproj.CopyComplete
+F:\B.TechCE\SEM6\SOC\Project\ConsoleHost\obj\Debug\ConsoleHost.exe
+F:\B.TechCE\SEM6\SOC\Project\ConsoleHost\obj\Debug\ConsoleHost.pdb
