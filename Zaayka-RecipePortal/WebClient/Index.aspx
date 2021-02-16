@@ -7,7 +7,12 @@
     <title></title>
 </head>
 <body>
+    <form id="form1" runat="server">
     <a href="Register.aspx">Sign Up</a>
     <a href="Login.aspx">Login</a>
+        <p>
+            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+        </p>
+    </form>
 </body>
 </html>

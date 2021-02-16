@@ -11,7 +11,10 @@ namespace WebClient
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string u = Request.QueryString["user"];
+            Label1.Text = u;
+            if (!u.Equals(null))
+                Label1.Text = "Welcome " + u;
         }
     }
 }

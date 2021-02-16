@@ -33,3 +33,4 @@ F:\B.TechCE\SEM6\SOC\Project\WebClient\obj\Debug\WebClient.csproj.CoreCompileInp
 F:\B.TechCE\SEM6\SOC\Project\WebClient\obj\Debug\WebClient.csproj.CopyComplete
 F:\B.TechCE\SEM6\SOC\Project\WebClient\obj\Debug\WebClient.dll
 F:\B.TechCE\SEM6\SOC\Project\WebClient\obj\Debug\WebClient.pdb
+F:\B.TechCE\SEM6\SOC\Project\WebClient\obj\Debug\WebClient.csprojAssemblyReference.cache

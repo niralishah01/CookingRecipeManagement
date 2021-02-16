@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-
+            <a href="Index.aspx">Home</a>
             Register yourself here...<br />
             <asp:Label ID="Label4" runat="server" Text="" ForeColor="Red"></asp:Label>
             <br />
@@ -25,6 +25,11 @@
             <br />
             <asp:Button ID="Button1" runat="server" Text="SignUp" OnClick="Button1_Click" />
         </div>
+    Already Registered? SignIn here..<br />
+    <a href="Login.aspx">Sign In</a>
+
     </form>
+        
+
 </body>
 </html>
