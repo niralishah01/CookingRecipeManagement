@@ -44,6 +44,30 @@
   <wsdl:message name="IAccountService_DeleteUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IAccountService_Logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="IAccountService_Logout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountService_SendMail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMail" />
+  </wsdl:message>
+  <wsdl:message name="IAccountService_SendMail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountService_RedirectToResetPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:RedirectToResetPassword" />
+  </wsdl:message>
+  <wsdl:message name="IAccountService_RedirectToResetPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RedirectToResetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountService_ResetPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPassword" />
+  </wsdl:message>
+  <wsdl:message name="IAccountService_ResetPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPasswordResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAccountService">
     <wsdl:operation name="Register">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/Register" message="tns:IAccountService_Register_InputMessage" />
@@ -68,6 +92,22 @@
     <wsdl:operation name="DeleteUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/DeleteUser" message="tns:IAccountService_DeleteUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/DeleteUserResponse" message="tns:IAccountService_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/Logout" message="tns:IAccountService_Logout_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/LogoutResponse" message="tns:IAccountService_Logout_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/SendMail" message="tns:IAccountService_SendMail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/SendMailResponse" message="tns:IAccountService_SendMail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RedirectToResetPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/RedirectToResetPassword" message="tns:IAccountService_RedirectToResetPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/RedirectToResetPasswordResponse" message="tns:IAccountService_RedirectToResetPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/ResetPassword" message="tns:IAccountService_ResetPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/ResetPasswordResponse" message="tns:IAccountService_ResetPassword_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAccountService" type="tns:IAccountService">
@@ -119,6 +159,42 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteUser">
       <soap:operation soapAction="http://tempuri.org/IAccountService/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="http://tempuri.org/IAccountService/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <soap:operation soapAction="http://tempuri.org/IAccountService/SendMail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RedirectToResetPassword">
+      <soap:operation soapAction="http://tempuri.org/IAccountService/RedirectToResetPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <soap:operation soapAction="http://tempuri.org/IAccountService/ResetPassword" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

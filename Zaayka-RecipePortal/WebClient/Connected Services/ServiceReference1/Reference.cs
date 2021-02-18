@@ -34,6 +34,9 @@ namespace WebClient.ServiceReference1 {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string passwordField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string uniquecodeField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -96,6 +99,19 @@ namespace WebClient.ServiceReference1 {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string uniquecode {
+            get {
+                return this.uniquecodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.uniquecodeField, value) != true)) {
+                    this.uniquecodeField = value;
+                    this.RaisePropertyChanged("uniquecode");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -145,6 +161,30 @@ namespace WebClient.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/DeleteUser", ReplyAction="http://tempuri.org/IAccountService/DeleteUserResponse")]
         System.Threading.Tasks.Task DeleteUserAsync(int ID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/Logout", ReplyAction="http://tempuri.org/IAccountService/LogoutResponse")]
+        void Logout();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/Logout", ReplyAction="http://tempuri.org/IAccountService/LogoutResponse")]
+        System.Threading.Tasks.Task LogoutAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/SendMail", ReplyAction="http://tempuri.org/IAccountService/SendMailResponse")]
+        string SendMail(string emailid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/SendMail", ReplyAction="http://tempuri.org/IAccountService/SendMailResponse")]
+        System.Threading.Tasks.Task<string> SendMailAsync(string emailid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/RedirectToResetPassword", ReplyAction="http://tempuri.org/IAccountService/RedirectToResetPasswordResponse")]
+        string RedirectToResetPassword(string ucode, string emailid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/RedirectToResetPassword", ReplyAction="http://tempuri.org/IAccountService/RedirectToResetPasswordResponse")]
+        System.Threading.Tasks.Task<string> RedirectToResetPasswordAsync(string ucode, string emailid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/ResetPassword", ReplyAction="http://tempuri.org/IAccountService/ResetPasswordResponse")]
+        string ResetPassword(string ucode, string emailid, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/ResetPassword", ReplyAction="http://tempuri.org/IAccountService/ResetPasswordResponse")]
+        System.Threading.Tasks.Task<string> ResetPasswordAsync(string ucode, string emailid, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -220,6 +260,38 @@ namespace WebClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task DeleteUserAsync(int ID) {
             return base.Channel.DeleteUserAsync(ID);
+        }
+        
+        public void Logout() {
+            base.Channel.Logout();
+        }
+        
+        public System.Threading.Tasks.Task LogoutAsync() {
+            return base.Channel.LogoutAsync();
+        }
+        
+        public string SendMail(string emailid) {
+            return base.Channel.SendMail(emailid);
+        }
+        
+        public System.Threading.Tasks.Task<string> SendMailAsync(string emailid) {
+            return base.Channel.SendMailAsync(emailid);
+        }
+        
+        public string RedirectToResetPassword(string ucode, string emailid) {
+            return base.Channel.RedirectToResetPassword(ucode, emailid);
+        }
+        
+        public System.Threading.Tasks.Task<string> RedirectToResetPasswordAsync(string ucode, string emailid) {
+            return base.Channel.RedirectToResetPasswordAsync(ucode, emailid);
+        }
+        
+        public string ResetPassword(string ucode, string emailid, string password) {
+            return base.Channel.ResetPassword(ucode, emailid, password);
+        }
+        
+        public System.Threading.Tasks.Task<string> ResetPasswordAsync(string ucode, string emailid, string password) {
+            return base.Channel.ResetPasswordAsync(ucode, emailid, password);
         }
     }
 }

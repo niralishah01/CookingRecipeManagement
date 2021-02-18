@@ -14,12 +14,14 @@ namespace WCFServices
         private string uname;
         private string emailid;
         private string passwd;
+        private string ucode;
         [DataMember]
         public int ID
         {
             get { return userID; }
             set { userID = value; }
         }
+        [DataMember]
         public string name
         {
             get { return uname; }
@@ -36,6 +38,12 @@ namespace WCFServices
         {
             get { return passwd; }
             set { passwd = value; }
+        }
+        [DataMember]
+        public string uniquecode
+        {
+            get { return ucode; }
+            set { ucode = value; }
         }
     }
 }

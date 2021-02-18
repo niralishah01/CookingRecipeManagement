@@ -24,8 +24,14 @@ namespace WebClient
             if (loguser == null)
                 Label3.Text = "Invalid Email or password, please enter your registerd email and password only..";
             else
+            {
+                string url = "Home.aspx?";
+                url += "userid=" + Server.UrlEncode(loguser.ID.ToString()) + "&";
+                url += "name=" + Server.UrlEncode(loguser.name);
+                Response.Redirect(url);
+            }
                 //Label3.Text = loguser.name;
-                Response.Redirect("~/Index.aspx?user="+loguser);
+               
         }
     }
 }

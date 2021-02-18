@@ -25,5 +25,13 @@ namespace WCFServices
         DataSet GetUsers();
         [OperationContract]
         void DeleteUser(int ID);
+        [OperationContract]
+        void Logout();
+        [OperationContract]
+        string SendMail(string emailid);
+        [OperationContract]
+        string RedirectToResetPassword(string ucode,string emailid);
+        [OperationContract]
+        string ResetPassword(string ucode, string emailid, string password);
     }
 }
