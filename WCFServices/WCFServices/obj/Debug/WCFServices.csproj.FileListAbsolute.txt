@@ -1,0 +1,7 @@
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\WCFServices\bin\Debug\WCFServices.dll.config
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\WCFServices\bin\Debug\WCFServices.dll
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\WCFServices\bin\Debug\WCFServices.pdb
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\WCFServices\obj\Debug\WCFServices.csprojAssemblyReference.cache
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\WCFServices\obj\Debug\WCFServices.csproj.CoreCompileInputs.cache
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\WCFServices\obj\Debug\WCFServices.dll
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\WCFServices\obj\Debug\WCFServices.pdb
