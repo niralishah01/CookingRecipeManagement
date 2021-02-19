@@ -1,0 +1,11 @@
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\ConsoleHost\bin\Debug\ConsoleHost.exe.config
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\ConsoleHost\bin\Debug\ConsoleHost.exe
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\ConsoleHost\bin\Debug\ConsoleHost.pdb
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\ConsoleHost\bin\Debug\WCFServices.dll
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\ConsoleHost\bin\Debug\WCFServices.pdb
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\ConsoleHost\bin\Debug\WCFServices.dll.config
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\ConsoleHost\obj\Debug\ConsoleHost.csprojAssemblyReference.cache
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\ConsoleHost\obj\Debug\ConsoleHost.csproj.CoreCompileInputs.cache
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\ConsoleHost\obj\Debug\ConsoleHost.csproj.CopyComplete
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\ConsoleHost\obj\Debug\ConsoleHost.exe
+D:\E-Drive\SEM-6\Service_Oriented_Architecture\SOC_Project\WCFServices\ConsoleHost\obj\Debug\ConsoleHost.pdb
