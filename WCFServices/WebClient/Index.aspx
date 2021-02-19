@@ -35,8 +35,8 @@
         <h2 class="bg-secondary p-2 text-light">
                 <img id="sitelogo" style="height:40px;width:40px" src="/Images/sitelogo.jpg" alt="No image">
                 Zaiyka
-                <a href="home.aspx" class="btn btn-light"><i class="fas fa-sign-in-alt"></i> Login</a>
-                <a href="#" class="btn btn-light"><i class="fas fa-registered"></i> Register</a>
+                <a href="Login.aspx" class="btn btn-light"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="Register.aspx" class="btn btn-light"><i class="fas fa-registered"></i> Register</a>
         </h2>
     </header>
     <form id="form1" runat="server">
@@ -62,4 +62,6 @@
     <i class="fas fa-registered"></i> ---register
     <i class="fas fa-sign-out-alt"></i> ---logout
     <i class="fas fa-sign-in-alt"></i> ---login
+    <i class="fas fa-shopping-cart"></i> ---Cart
+    <i class="fas fa-box-open"></i> ---open box
     -->

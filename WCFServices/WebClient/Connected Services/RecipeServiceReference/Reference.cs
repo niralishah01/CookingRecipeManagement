@@ -229,6 +229,18 @@ namespace WebClient.RecipeServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/AddDislike", ReplyAction="http://tempuri.org/IRecipeService/AddDislikeResponse")]
         System.Threading.Tasks.Task<bool> AddDislikeAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetUserSpecificRecipes", ReplyAction="http://tempuri.org/IRecipeService/GetUserSpecificRecipesResponse")]
+        WebClient.RecipeServiceReference.Recipe[] GetUserSpecificRecipes(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetUserSpecificRecipes", ReplyAction="http://tempuri.org/IRecipeService/GetUserSpecificRecipesResponse")]
+        System.Threading.Tasks.Task<WebClient.RecipeServiceReference.Recipe[]> GetUserSpecificRecipesAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/DeleteRecipe", ReplyAction="http://tempuri.org/IRecipeService/DeleteRecipeResponse")]
+        bool DeleteRecipe(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/DeleteRecipe", ReplyAction="http://tempuri.org/IRecipeService/DeleteRecipeResponse")]
+        System.Threading.Tasks.Task<bool> DeleteRecipeAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -288,6 +300,22 @@ namespace WebClient.RecipeServiceReference {
         
         public System.Threading.Tasks.Task<bool> AddDislikeAsync(int id) {
             return base.Channel.AddDislikeAsync(id);
+        }
+        
+        public WebClient.RecipeServiceReference.Recipe[] GetUserSpecificRecipes(int id) {
+            return base.Channel.GetUserSpecificRecipes(id);
+        }
+        
+        public System.Threading.Tasks.Task<WebClient.RecipeServiceReference.Recipe[]> GetUserSpecificRecipesAsync(int id) {
+            return base.Channel.GetUserSpecificRecipesAsync(id);
+        }
+        
+        public bool DeleteRecipe(int id) {
+            return base.Channel.DeleteRecipe(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteRecipeAsync(int id) {
+            return base.Channel.DeleteRecipeAsync(id);
         }
     }
 }
