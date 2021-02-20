@@ -1,7 +1,0 @@
-F:\B.TechCE\SEM6\SOC\Project\WCFServices\bin\Debug\WCFServices.dll.config
-F:\B.TechCE\SEM6\SOC\Project\WCFServices\bin\Debug\WCFServices.dll
-F:\B.TechCE\SEM6\SOC\Project\WCFServices\bin\Debug\WCFServices.pdb
-F:\B.TechCE\SEM6\SOC\Project\WCFServices\obj\Debug\WCFServices.csproj.CoreCompileInputs.cache
-F:\B.TechCE\SEM6\SOC\Project\WCFServices\obj\Debug\WCFServices.dll
-F:\B.TechCE\SEM6\SOC\Project\WCFServices\obj\Debug\WCFServices.pdb
-F:\B.TechCE\SEM6\SOC\Project\WCFServices\obj\Debug\WCFServices.csprojAssemblyReference.cache
