@@ -31,6 +31,18 @@
   <wsdl:message name="IRecipeService_AddDislike_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddDislikeResponse" />
   </wsdl:message>
+  <wsdl:message name="IRecipeService_GetUserSpecificRecipes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSpecificRecipes" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_GetUserSpecificRecipes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSpecificRecipesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_DeleteRecipe_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipe" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_DeleteRecipe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipeResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRecipeService">
     <wsdl:operation name="GetAllRecipes">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetAllRecipes" message="tns:IRecipeService_GetAllRecipes_InputMessage" />
@@ -47,6 +59,14 @@
     <wsdl:operation name="AddDislike">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/AddDislike" message="tns:IRecipeService_AddDislike_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/AddDislikeResponse" message="tns:IRecipeService_AddDislike_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSpecificRecipes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetUserSpecificRecipes" message="tns:IRecipeService_GetUserSpecificRecipes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/GetUserSpecificRecipesResponse" message="tns:IRecipeService_GetUserSpecificRecipes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/DeleteRecipe" message="tns:IRecipeService_DeleteRecipe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/DeleteRecipeResponse" message="tns:IRecipeService_DeleteRecipe_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRecipeService" type="tns:IRecipeService">
@@ -80,6 +100,24 @@
     </wsdl:operation>
     <wsdl:operation name="AddDislike">
       <soap:operation soapAction="http://tempuri.org/IRecipeService/AddDislike" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSpecificRecipes">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/GetUserSpecificRecipes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipe">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/DeleteRecipe" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

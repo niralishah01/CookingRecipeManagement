@@ -54,6 +54,7 @@
     <Compile Include="AccountService.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="RecipeService.cs" />
+    <Compile Include="Users.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

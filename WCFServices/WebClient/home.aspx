@@ -35,10 +35,14 @@
         <h2 class="bg-secondary p-2 text-light">
                 <img id="sitelogo" style="height:40px;width:40px" src="/Images/sitelogo.jpg" alt="No image">
                 Zaiyka
-                <a href="#" class="btn btn-light"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="" class="btn btn-light" runat="server" id="myhome"><i class="fas fa-home"></i> Home</a>
+                <a href="" class="btn btn-light" runat="server" id="myrecipes"><i class="fas fa-box-open"></i> My Recipes</a>
+                <a href="#" class="btn btn-light" runat="server"  id="profile"><i class="fas fa-user-alt"></i> Profile</a>
+                <a href="#" class="btn btn-light" runat="server" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </h2>
     </header>
     <form id="form1" runat="server">
+        <h2 runat="server" id="title"></h2>
         <div class="container p-1">
             <asp:Panel ID="Panel1" runat="server">
             </asp:Panel>

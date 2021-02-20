@@ -22,5 +22,11 @@ namespace WCFServices
 
         [OperationContract]
         bool AddDislike(int id);
+
+        [OperationContract]
+        List<Recipe> GetUserSpecificRecipes(int id);
+
+        [OperationContract]
+        bool DeleteRecipe(int id);
     }
 }

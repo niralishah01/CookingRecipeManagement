@@ -100,6 +100,43 @@ namespace WCFServices
             return false;
         }
 
+        public bool DeleteRecipe(int id)
+        {
+            SqlConnection conn = new SqlConnection(connectionstring);
+            Console.WriteLine("Connection established, Connecction state: " + conn.State);
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "delete from recipes where ID=@Id";
+            SqlParameter para = new SqlParameter("@Id", id);
+            cmd.Parameters.Add(para);
+            try
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    Console.WriteLine("Connection is opened, Connection state: " + conn.State);
+                    int rowaffected = cmd.ExecuteNonQuery();
+                    if (rowaffected == 1)
+                    {
+                        Console.WriteLine("The database contains some rows.");
+                        return true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("The database does not contain rows.");
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                string Msg = "ERROR: " + err.ToString();
+                Console.WriteLine(Msg);
+                throw new Exception(err.Message);
+            }
+            Console.WriteLine("Connection disconnected, Connection State: " + conn.State);
+            return false;
+    }
+
         public List<Recipe> GetAllRecipes()
         {
             SqlConnection conn = new SqlConnection(connectionstring);
@@ -193,6 +230,59 @@ namespace WCFServices
             }
             Console.WriteLine("Connection disconnected, Connection State: " + conn.State);
             return recipe;
+        }
+
+        public List<Recipe> GetUserSpecificRecipes(int id)
+        {
+            SqlConnection conn = new SqlConnection(connectionstring);
+            Console.WriteLine("Connection established, Connecction state: " + conn.State);
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "select * from recipes where userid=@Id";
+            SqlParameter para = new SqlParameter("@Id",id);
+            cmd.Parameters.Add(para);
+            List<Recipe> recipes = new List<Recipe>();
+            try
+            {
+                using(conn)
+                {
+                    conn.Open();
+                    Console.WriteLine("Connection is opened, Connection state: " + conn.State);
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+                        Console.WriteLine("The database contains some rows.");
+                        Recipe recipe;
+                        while (rdr.Read())
+                        {
+                            recipe = new Recipe();
+                            recipe.Id = Convert.ToInt32(rdr["ID"]);
+                            recipe.Title = rdr["title"].ToString();
+                            recipe.Ingredients = rdr["ingredients"].ToString();
+                            recipe.Method = rdr["method"].ToString();
+                            recipe.Image = rdr["image"].ToString();
+                            recipe.Category = rdr["category"].ToString();
+                            recipe.Otherdetails = rdr["otherdetails"].ToString();
+                            recipe.UserID = Convert.ToInt32(rdr["userID"]);
+                            recipe.Likes = Convert.ToInt32(rdr["likes"]);
+                            recipe.Dislikes = Convert.ToInt32(rdr["dislikes"]);
+                            recipes.Add(recipe);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("The database does not contain rows.");
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                string Msg = "ERROR: " + err.ToString();
+                Console.WriteLine(Msg);
+                throw new Exception(err.Message);
+            }
+            Console.WriteLine("Connection disconnected, Connection State: " + conn.State);
+            return recipes;
         }
     }
 }

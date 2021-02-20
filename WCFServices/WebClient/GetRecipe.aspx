@@ -44,7 +44,7 @@
                         </div>
                         <div class="card-footer bg-light" id="card_f" runat="server">
                             <center>
-                                <a href="home.aspx" class="btn btn-outline-primary text-decoration-none btn-sm" value="Button" runat="server" >Back</a>
+                                <a href="" class="btn btn-outline-primary text-decoration-none btn-sm" value="Button" runat="server" id="back" >Back</a>
                             </center>
                         </div>
                     </div>
