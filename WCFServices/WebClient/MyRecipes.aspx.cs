@@ -74,10 +74,10 @@ namespace WebClient
                         viewDetails.Attributes.Add("rid", (recipeList[i].Id).ToString());
                         viewDetails.Text = "View Details";
                         viewDetails.Attributes.Add("class", "btn btn-outline-primary btn-sm");
-                        string s = ((recipeList[i].Id).ToString());
+                        string rid = ((recipeList[i].Id).ToString());
                         //viewDetails.Click += (s2, e2) => getRecipe(s2, e2, s );
                         //viewDetails.Click += delegate (object s1, EventArgs e1) { getRecipe(s1, e1, s ); };
-                        viewDetails.Click += new EventHandler((s1, e1) => getRecipe(sender, e, s));
+                        viewDetails.Click += new EventHandler((s1, e1) => getRecipe(sender, e, rid, Request.QueryString["userid"]));
                         viewDetails.Visible = true;
 
                         Button updaterecipe = new Button();                                          //likes button
@@ -85,17 +85,19 @@ namespace WebClient
                         updaterecipe.Attributes.Add("class", "btn btn-outline-success btn-sm");
                         //viewDetails.Click += (s2, e2) => getRecipe(s2, e2, s );
                         //viewDetails.Click += delegate (object s1, EventArgs e1) { getRecipe(s1, e1, s ); };
-                        updaterecipe.Click += new EventHandler((s1, e1) => updateRecipe(sender, e, s));
+                        updaterecipe.Click += new EventHandler((s1, e1) => updateRecipe(sender, e, rid, Request.QueryString["userid"]));
                         updaterecipe.Text = "Update";
                         updaterecipe.Visible = true;
 
                         Button deleterecipe = new Button();                                          //dislikes button
                         deleterecipe.Attributes.Add("rid", (recipeList[i].Id).ToString());
                         deleterecipe.Attributes.Add("class", "btn btn-outline-danger btn-sm");
-                        deleterecipe.Attributes.Add("data-toggle", "modal");
-                        deleterecipe.Attributes.Add("data-target", "#deletemodal");
+                        deleterecipe.Click += new EventHandler((s1, e1) => deleteRecipe(sender, e,rid));
+                        /*deleterecipe.Attributes.Add("data-toggle", "modal");
+                        deleterecipe.Attributes.Add("data-target", "#deletemodal");*/
                         deleterecipe.Text = "Delete";
                         deleterecipe.Visible = true;
+                        //deleteModal.Attributes.Add("rid", (recipeList[i].Id).ToString());
 
                         /*HtmlGenericControl modal = new HtmlGenericControl("div");           //Delete Modal creation
                         HtmlGenericControl dialog = new HtmlGenericControl("div");
@@ -104,10 +106,16 @@ namespace WebClient
                         HtmlGenericControl modal_body = new HtmlGenericControl("div");
                         HtmlGenericControl modal_footer = new HtmlGenericControl("div");
                         modal.Attributes.Add("class", "modal fade");
-                        modal.Attributes.Add("role", "dialog");
+                        //modal.Attributes.Add("role", "dialog");
                         modal.Attributes.Add("id", "deletemodal");
                         dialog.Attributes.Add("class", "modal-dialog");
                         content.Attributes.Add("class", "modal-content");
+                        modal.Visible = true;
+                        dialog.Visible = true;
+                        content.Visible = true;
+                        modal_header.Visible = true;
+                        modal_body.Visible = true;
+                        modal_footer.Visible = true;
 
                         modal_header.Attributes.Add("class", "modal-header");
                         HtmlGenericControl modal_title = new HtmlGenericControl("h4");      //Modal-title
@@ -117,6 +125,7 @@ namespace WebClient
                         close.Attributes.Add("class", "close");
                         close.Attributes.Add("data-dismiss", "modal");
                         close.Text = "&times;";
+                        close.Visible = true;
                         modal_header.Controls.Add(modal_title);
                         modal_header.Controls.Add(close);
 
@@ -144,13 +153,15 @@ namespace WebClient
                         content.Controls.Add(modal_body);
                         content.Controls.Add(modal_footer);
                         dialog.Controls.Add(content);
-                        modal.Controls.Add(dialog);*/
+                        modal.Controls.Add(dialog);
+                        Panel2.Controls.Add(modal);*/
 
+                        //buttonGroup.Controls.Add(modal);
                         buttonGroup.Controls.Add(viewDetails);
                         buttonGroup.Controls.Add(updaterecipe);
                         buttonGroup.Controls.Add(deleterecipe);
                         card_f.Controls.Add(buttonGroup);
-                        //card_f.Controls.Add(modal);
+                        
 
                         card.Controls.Add(card_h);
                         card.Controls.Add(card_b);
@@ -174,21 +185,51 @@ namespace WebClient
                 proxy.Close();
             }
         }
-        protected void updateRecipe(object sender, EventArgs e, string ID)
+        protected void updateRecipe(object sender, EventArgs e, string ID,string userid)
         {
-            Response.Redirect("UpdateRecipe.aspx?userid=" + ID);
+            Response.Redirect("UpdateRecipe.aspx?rid=" + ID + "&b=m&userid=" + userid);
         }
-
-        protected void getRecipe(object sender, EventArgs e, string ID)
-        {
-            Response.Redirect("GetRecipe.aspx?userid=" + ID+"&b=m");
-        }
-
-        protected void deleteRecipeConfirm(object sender, EventArgs e, string ID)
+        protected void deleteRecipe(object sender, EventArgs e, string ID)
         {
             RecipeServiceReference.RecipeServiceClient proxy = new RecipeServiceReference.RecipeServiceClient();
-            bool isdeleted = proxy.DeleteRecipe(Convert.ToInt32(ID));
-            proxy.Close();
+            RecipeServiceReference.Recipe deletingRecipe = proxy.GetRecipe(Convert.ToInt32(ID)) ;
+            if(deletingRecipe != null)
+            {
+                modal_body.InnerHtml = "Are you sure want to do delete " + deletingRecipe.Title+" ?";
+                modal_title.InnerHtml = "Confirmation of Deletion of Recipe";
+                Button delete = (Button)FindControl("modal_yes");
+                delete.Attributes.Add("rid",ID);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "deleteModal", "$(document).ready(function(){$('#deleteModal').modal();});", true);
+                upmodal.Update();
+            }
+        }
+
+        protected void getRecipe(object sender, EventArgs e, string ID,string userid)
+        {
+            Response.Redirect("GetRecipe.aspx?rid=" + ID+"&b=m&userid="+userid);
+        }
+
+        protected void deleteRecipeConfirm(object sender, EventArgs e)
+        {
+            if (Request.QueryString["userid"] != null)
+            {
+                string ID = "";
+                Button delete = (Button)FindControl("modal_yes");
+                foreach (string key in delete.Attributes.Keys)
+                {
+                    if (key.Equals("rid"))
+                    {
+                        ID = delete.Attributes["rid"];
+                        break;
+                    }
+                }
+                RecipeServiceReference.RecipeServiceClient proxy = new RecipeServiceReference.RecipeServiceClient();
+                bool isdeleted = proxy.DeleteRecipe(Convert.ToInt32(ID));
+                proxy.Close();
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "deleteModal", "$(document).ready(function(){$('#deleteModal').modal('hide');});", true);
+                upmodal.Update();
+                Response.Redirect("MyRecipes.aspx?userid=" + Request.QueryString["userid"]);
+            }
         }
     }
 }

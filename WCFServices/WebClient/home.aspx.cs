@@ -86,10 +86,10 @@ namespace WebClient
                         viewDetails.Attributes.Add("rid", (recipeList[i].Id).ToString());
                         viewDetails.Text = "View Details";
                         viewDetails.Attributes.Add("class", "btn btn-outline-primary btn-sm");
-                        string s = ((recipeList[i].Id).ToString());
+                        string rid = ((recipeList[i].Id).ToString());
                         //viewDetails.Click += (s2, e2) => getRecipe(s2, e2, s );
                         //viewDetails.Click += delegate (object s1, EventArgs e1) { getRecipe(s1, e1, s ); };
-                        viewDetails.Click += new EventHandler((s1, e1) => getRecipe(sender, e, s));
+                        viewDetails.Click += new EventHandler((s1, e1) => getRecipe(sender, e, rid, Request.QueryString["userid"]));
                         viewDetails.Visible = true;
 
                         Button like = new Button();                                          //likes button
@@ -102,7 +102,7 @@ namespace WebClient
                         //like.Attributes.Add("class", "btn btn-primary align-self-center");
                         //viewDetails.Click += (s2, e2) => getRecipe(s2, e2, s );
                         //viewDetails.Click += delegate (object s1, EventArgs e1) { getRecipe(s1, e1, s ); };
-                        like.Click += new EventHandler((s1, e1) => addLike(sender, e, s));
+                        like.Click += new EventHandler((s1, e1) => addLike(sender, e, rid));
                         like.Text = "Like";
                         like.Visible = true;
 
@@ -116,7 +116,7 @@ namespace WebClient
                         //like.Attributes.Add("class", "btn btn-primary align-self-center");
                         //viewDetails.Click += (s2, e2) => getRecipe(s2, e2, s );
                         //viewDetails.Click += delegate (object s1, EventArgs e1) { getRecipe(s1, e1, s ); };
-                        dislike.Click += new EventHandler((s1, e1) => addDislike(sender, e, s));
+                        dislike.Click += new EventHandler((s1, e1) => addDislike(sender, e, rid));
                         dislike.Text = "Dislike";
                         dislike.Visible = true;
 
@@ -148,31 +148,37 @@ namespace WebClient
                 proxy.Close();
             }
         }
-        protected void getRecipe(object sender, EventArgs e, string ID)
+        protected void getRecipe(object sender, EventArgs e, string ID,string userid)
         {
-            Response.Redirect("GetRecipe.aspx?userid=" + ID + "&b=h");
+            Response.Redirect("GetRecipe.aspx?rid=" + ID + "&b=h&userid="+userid);
         }
         protected void addLike(object sender, EventArgs e, string ID)
         {
-            RecipeServiceReference.RecipeServiceClient proxy = new RecipeServiceReference.RecipeServiceClient();
-            bool isadded = proxy.AddLike(Convert.ToInt32(ID));
-            /*if(isadded == true)
+            if(Request.QueryString["userid"] != null)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('You like it!!!');", true);
-            }*/
-            Response.Redirect("home.aspx");
-            proxy.Close();
+                RecipeServiceReference.RecipeServiceClient proxy = new RecipeServiceReference.RecipeServiceClient();
+                bool isadded = proxy.AddLike(Convert.ToInt32(ID));
+                /*if(isadded == true)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('You like it!!!');", true);
+                }*/
+                Response.Redirect("home.aspx?userid="+ Request.QueryString["userid"]);
+                proxy.Close();
+            }
         }
         protected void addDislike(object sender, EventArgs e, string ID)
         {
-            RecipeServiceReference.RecipeServiceClient proxy = new RecipeServiceReference.RecipeServiceClient();
-            bool isadded = proxy.AddDislike(Convert.ToInt32(ID));
-            /*if (isadded == true)
+            if (Request.QueryString["userid"] != null)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('You dislike it!!!');", true);
-            }*/
-            Response.Redirect("home.aspx");
-            proxy.Close();
+                RecipeServiceReference.RecipeServiceClient proxy = new RecipeServiceReference.RecipeServiceClient();
+                bool isadded = proxy.AddDislike(Convert.ToInt32(ID));
+                /*if (isadded == true)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('You dislike it!!!');", true);
+                }*/
+                Response.Redirect("home.aspx?userid=" + Request.QueryString["userid"]);
+                proxy.Close();
+            }
         }
     }
 }

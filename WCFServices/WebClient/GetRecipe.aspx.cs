@@ -20,13 +20,19 @@ namespace WebClient
                     if(Request.QueryString["b"] == "m")
                         back.HRef = "MyRecipes.aspx?userid=" + Request.QueryString["userid"];
                 }
-
                 RecipeServiceReference.RecipeServiceClient client = new RecipeServiceReference.RecipeServiceClient("BasicHttpBinding_IRecipeService");
                 TableCell c; TableRow r;
+                string madeby = "";
                 try
                 {
-                    RecipeServiceReference.Recipe recipe = client.GetRecipe(Convert.ToInt32(Request.QueryString["userid"]));
+                    RecipeServiceReference.Recipe recipe = client.GetRecipe(Convert.ToInt32(Request.QueryString["rid"]));
                     card_h.InnerText = recipe.Title;
+
+                    AccountServiceReference.AccountServiceClient account_proxy = new AccountServiceReference.AccountServiceClient();
+                    AccountServiceReference.Users current_user = account_proxy.GetUserDetail(Convert.ToInt32(recipe.UserID));
+                    madeby = current_user.name;
+                    account_proxy.Close();
+
                     Image img = new Image();
                     img.ImageUrl = "~/Images/" + recipe.Image;
                     card_b.Controls.Add(img);
@@ -36,7 +42,7 @@ namespace WebClient
                     r = new TableRow();
                     c = new TableCell(); c.Text = "Made by";
                     r.Cells.Add(c);
-                    c = new TableCell(); c.Text = recipe.UserID.ToString();
+                    c = new TableCell(); c.Text = madeby;
                     r.Cells.Add(c);
                     t.Rows.Add(r);
 

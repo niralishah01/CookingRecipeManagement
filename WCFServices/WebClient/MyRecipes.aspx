@@ -42,31 +42,37 @@
         </h2>
     </header>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
         <h2 runat="server" id="title">Your uploaded recipes</h2>
         <div class="container p-1">
             <asp:Panel ID="Panel1" runat="server">
-                <!--<div class="modal fade" id="deleteModal" role="dialog">
+                <div class="modal fade" id="deleteModal" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
-                      <div class="modal-content">-->
-                        <!-- Modal Header -->
-                        <!--<div class="modal-header">
-                          <h4 class="modal-title">Confirmation of Deletion of Recipe</h4>
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>-->
-                        <!-- Modal body -->
-                        <!--<div class="modal-body">
-                          Are you sure want to delete this recipe?
-                        </div>-->
-                        <!-- Modal footer -->
-                        <!--<div class="modal-footer">
-                          <button type="button" class="btn btn-danger" runat="server" id="delete">Yes</button>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                        </div>
-                      </div>
+                        <asp:UpdatePanel ID="upmodal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header" id="modal_header" runat="server">
+                                      <h4 class="modal-title" id="modal_title" runat="server"></h4>
+                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="modal-body" id="modal_body" runat="server">
+                                    </div>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer"  id="modal_footer" runat="server">
+                                        <asp:Button ID="modal_yes" class="btn btn-danger" runat="server" Text="Yes" OnClick="deleteRecipeConfirm"></asp:Button>
+                                        <asp:Button ID="modal_no" class="btn btn-secondary" data-dismiss="modal" runat="server" Text="No"></asp:Button>
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
-                </div>-->
+                </div>
             </asp:Panel>
         </div>
+    <asp:Panel ID="Panel2" runat="server"></asp:Panel>
     </form>
-</body>
+    </body>
 </html>
