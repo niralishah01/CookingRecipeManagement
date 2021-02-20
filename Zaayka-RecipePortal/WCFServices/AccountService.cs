@@ -122,7 +122,25 @@ namespace WCFServices
         }
         public void UpdateUserDetails(Users u)
         {
-            
+            Users user = new Users();
+            try
+            {
+                command = "update Users set name=@name,email=@email where ID=@id";
+                cmd = new SqlCommand(command, conn);
+                cmd.Parameters.AddWithValue("@id", u.ID);
+                cmd.Parameters.AddWithValue("@name", u.name);
+                cmd.Parameters.AddWithValue("@email", u.email);
+                using (conn)
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            //return user;
         }
 
         public  void Logout()
@@ -132,10 +150,9 @@ namespace WCFServices
 
         public string SendMail(string emailid)
         {
-            //throw new NotImplementedException();
             string ucode = string.Empty;
             string result = string.Empty;
-            /*try
+            try
             {
                 string command = "select * from Users where email=@email";
                 cmd = new SqlCommand(command, conn);
@@ -153,7 +170,7 @@ namespace WCFServices
                         StringBuilder strBody = new StringBuilder();
                         strBody.Append("<a href=http://localhost:44313/ResetPassword.aspx?emailid=" + emailid + "&ucode=" + ucode + ">Click here to change the password</a>");
                         MailMessage mail = new MailMessage("nirali2k1@gmail.com", emailid, "Reset your Password", strBody.ToString());
-                        System.Net.NetworkCredential mailAuth = new System.Net.NetworkCredential("nirali2k1@gmail.com", "Hlc@rpnb#10");
+                        System.Net.NetworkCredential mailAuth = new System.Net.NetworkCredential("niralipshah2000@gmail.com", "bani%sh1201");
                         SmtpClient mailclient = new SmtpClient("smtp.gmail.com", 587);
                         mailclient.EnableSsl = true;
                         mailclient.DeliveryMethod=SmtpDeliveryMethod.Network;
@@ -174,7 +191,7 @@ namespace WCFServices
             catch(Exception ex)
             {
                 result = ex.ToString();
-            }*/
+            }
             return result;
         }
 
@@ -182,7 +199,7 @@ namespace WCFServices
         {
             //throw new NotImplementedException();
             string result = string.Empty;
-            /*try
+            try
             {
                 cmd = new SqlCommand("select email,uniquecode from Users where uniquecode=@uniquecode and email=@email", conn);
                 cmd.Parameters.AddWithValue("@uniquecode", ucode);
@@ -205,7 +222,7 @@ namespace WCFServices
             catch(Exception ex)
             {
                 result = ex.Message.ToString();
-            }*/
+            }
             return result;
         }
 
@@ -213,7 +230,7 @@ namespace WCFServices
         {
             //throw new NotImplementedException();
             string result = string.Empty;
-            /*try
+            try
             {
                 cmd = new SqlCommand("update Users set uniquecode='',password=@password where uniquecode=@uniquecode and email=@email",conn);
                 cmd.Parameters.AddWithValue("@uniquecode", ucode);
@@ -226,7 +243,7 @@ namespace WCFServices
             catch(Exception ex)
             {
                 result = ex.Message.ToString();
-            }*/
+            }
             return result;
         }
     }
