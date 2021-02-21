@@ -1,0 +1,7 @@
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\WCFServices\bin\Debug\WCFServices.dll.config
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\WCFServices\bin\Debug\WCFServices.dll
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\WCFServices\bin\Debug\WCFServices.pdb
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\WCFServices\obj\Debug\WCFServices.csproj.CoreCompileInputs.cache
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\WCFServices\obj\Debug\WCFServices.dll
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\WCFServices\obj\Debug\WCFServices.pdb
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\WCFServices\obj\Debug\WCFServices.csprojAssemblyReference.cache
