@@ -20,18 +20,35 @@ namespace WCFServices
         {
             string result = "";
             try
-            { 
-                command = "insert into Users(name,email,password) values(@name,@email,@password)";
+            {
+                command = "select * from Users where email=@email";
                 cmd = new SqlCommand(command, conn);
-                cmd.Parameters.AddWithValue("@name", u.name);
                 cmd.Parameters.AddWithValue("@email", u.email);
-                cmd.Parameters.AddWithValue("@password", u.password);
-                using (conn)
+                conn.Open();
+                SqlDataReader rdr=cmd.ExecuteReader();
+                if (rdr.HasRows)
                 {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    result = "Registered Successfully..";
+                    result = "User is already registerd..";
+                    rdr.Close();
+                    
+                    return result;
                 }
+                else
+                {
+                    conn.Close();
+                    command = "insert into Users(name,email,password) values(@name,@email,@password)";
+                    cmd = new SqlCommand(command, conn);
+                    cmd.Parameters.AddWithValue("@name", u.name);
+                    cmd.Parameters.AddWithValue("@email", u.email);
+                    cmd.Parameters.AddWithValue("@password", u.password);
+                    using (conn)
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        result = "Registered Successfully..";
+                    }
+                }
+                
             }
             catch (Exception ex)
             {
@@ -167,16 +184,25 @@ namespace WCFServices
                         cmd = new SqlCommand("update Users set uniquecode=@uniquecode where email=@email", conn);
                         cmd.Parameters.AddWithValue("@uniquecode", ucode);
                         cmd.Parameters.AddWithValue("@email", emailid);
+                        MailMessage mail = new MailMessage("niralipshah2000@gmail.com",emailid);
                         StringBuilder strBody = new StringBuilder();
-                        strBody.Append("<a href=http://localhost/WebClient/ResetPassword.aspx?emailid=" + emailid + "&ucode=" + ucode + ">Click here to change the password</a>");
-                        MailMessage mail = new MailMessage("nirali2k1@gmail.com", emailid, "Reset your Password", strBody.ToString());
-                        System.Net.NetworkCredential mailAuth = new System.Net.NetworkCredential("niralipshah2000@gmail.com", "bani%sh1201");
-                        SmtpClient mailclient = new SmtpClient("smtp.gmail.com", 587);
-                        mailclient.EnableSsl = true;
-                        mailclient.DeliveryMethod=SmtpDeliveryMethod.Network;
-                        mailclient.UseDefaultCredentials = false;
-                        mailclient.Credentials = mailAuth;
+                        strBody.Append("Please click on following link to reset password..<br/>");
+                        strBody.Append("http://localhost:44313/ResetPassword.aspx?emailid=" + emailid + "&ucode=" + ucode);
                         mail.IsBodyHtml = true;
+                        mail.Body = strBody.ToString();
+                        mail.Subject = "Reset your password";
+                        //System.Net.NetworkCredential mailAuth = new System.Net.NetworkCredential("niralipshah2000@gmail.com", "bani%sh1201");
+                        SmtpClient mailclient = new SmtpClient("smtp.gmail.com", 587);
+                        mailclient.Credentials = new System.Net.NetworkCredential()
+                        {
+                            UserName = "niralipshah2000@gmail.com",
+                            Password = "bani%sh@1201"
+                        };
+                        mailclient.EnableSsl = true;
+                        //mailclient.DeliveryMethod=SmtpDeliveryMethod.Network;
+                        mailclient.UseDefaultCredentials = false;
+                        //mailclient.Credentials = mailAuth;
+                        
                         mailclient.Send(mail);
                         rdr.Close();
                         cmd.ExecuteNonQuery();
