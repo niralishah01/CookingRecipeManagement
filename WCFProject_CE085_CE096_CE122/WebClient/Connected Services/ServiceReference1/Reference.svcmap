@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4d2b16df-e571-45aa-8752-ae08780d8ce1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/RecipeService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RecipeService.xsd" MetadataType="Schema" ID="b2730874-0f55-4173-9a55-3b6a01f37189" SourceId="1" SourceUrl="http://localhost:8080/RecipeService?xsd=xsd1" />
+    <MetadataFile FileName="RecipeService.wsdl" MetadataType="Wsdl" ID="feba694d-c6e3-49c1-96fd-c62f039d0178" SourceId="1" SourceUrl="http://localhost:8080/RecipeService?wsdl=wsdl0" />
+    <MetadataFile FileName="RecipeService.disco" MetadataType="Disco" ID="f1c5ad33-df36-4527-8839-f8195c048ddb" SourceId="1" SourceUrl="http://localhost:8080/RecipeService?disco" />
+    <MetadataFile FileName="RecipeService1.wsdl" MetadataType="Wsdl" ID="a9fe1053-ac53-43b2-8460-20ea8a7ad19b" SourceId="1" SourceUrl="http://localhost:8080/RecipeService?wsdl" />
+    <MetadataFile FileName="RecipeService1.xsd" MetadataType="Schema" ID="162359e1-0659-45e7-9b1c-37305f2b8a48" SourceId="1" SourceUrl="http://localhost:8080/RecipeService?xsd=xsd0" />
+    <MetadataFile FileName="RecipeService2.xsd" MetadataType="Schema" ID="4d5f23c0-0bd6-43dc-bfef-8e9559752691" SourceId="1" SourceUrl="http://localhost:8080/RecipeService?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
