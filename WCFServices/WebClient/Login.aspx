@@ -9,42 +9,60 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <style>
         body{
-            background:linear-gradient(cyan,yellow);
+            background-color:rgb(240,240,240);
             background-position:center;
             background-repeat:no-repeat;
             background-size:cover;
             background-attachment:fixed;
-        }
-        .centered{
-            top:20%;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <center>
-            <div class="bg-white centerd p-2 w-25 rounded shadow-lg">
+            <div class="bg-white centerd p-1 w-25 rounded shadow-lg mt-5">
                 <form id="form1" runat="server">
-                    <a class="btn btn-primary" href="Index.aspx">Home</a>
-                    <br />
-                    Login Page<br />
-                    
-                    <asp:Label ID="Label3" runat="server" style="font-size:1vw;" ForeColor="Red"></asp:Label>
-                    <br />
-                    <div class="input-group">
-                        <asp:Label ID="Label1" runat="server" style="font-size:1.2vw;" Text="Email:"></asp:Label>
-                        <asp:TextBox ID="TextBox1" class="form-control" runat="server" style="font-size:1.2vw;"></asp:TextBox>
+                    <div class="row p-1">
+                        <div class="col col-lg-12">
+                            <h3>Login Page</h3>
+                        </div>
                     </div>
-                    <br />
-                    <div class="input-group">
-                        <asp:Label ID="Label2" runat="server" style="font-size:1.2vw;" Text="Password:"></asp:Label>
-                        <asp:TextBox ID="TextBox2" class ="form-control" runat="server" TextMode="Password" style="font-size:1.2vw;"></asp:TextBox>
+                    <div class="row p-1">
+                        <div class="col col-lg-12">
+                            <asp:Label ID="Label3" runat="server" style="font-size:1vw;" ForeColor="Red"></asp:Label>
+                        </div>
                     </div>
-                    
-                    <asp:Button ID="Button1" class="btn btn-success" runat="server" Text="Login" OnClick="Button1_Click" />
-         
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="ForgotPassword.aspx">Forgot Password??</asp:HyperLink>
-                    <br />
+                    <div class="row p-1">
+                        <div class="col col-lg-3">
+                            <asp:Label ID="Label1" runat="server" style="font-size:1.2vw;" Text="Email:"></asp:Label>
+                        </div>
+                        <div class="col col-lg-9">
+                            <asp:TextBox ID="TextBox1" class="form-control rounded-pill shadow-sm" runat="server" style="font-size:1.2vw;"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col col-lg-3">
+                            <asp:Label ID="Label2" runat="server" style="font-size:1.2vw;" Text="Password:"></asp:Label>
+                        </div>
+                        <div class="col col-lg-9">
+                            <asp:TextBox ID="TextBox2" class ="form-control rounded-pill shadow-sm" runat="server" TextMode="Password" style="font-size:1.2vw;"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col col-lg-12 align-items-center">
+                            <asp:Button ID="Button1" class="btn btn-success w-75" runat="server" Text="Login" OnClick="Button1_Click" />
+                        </div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col col-lg-12">
+                            <asp:HyperLink ID="HyperLink1" class="text-danger" runat="server" NavigateUrl="ForgotPassword.aspx">Forgot Password??</asp:HyperLink>
+                        </div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col col-lg-12">
+                            <a class="btn btn-primary w-50" href="Index.aspx">Home</a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </center>

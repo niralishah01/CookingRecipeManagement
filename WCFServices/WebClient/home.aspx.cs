@@ -17,6 +17,7 @@ namespace WebClient
             {
                 myrecipes.HRef = "MyRecipes.aspx?userid=" + Request.QueryString["userid"];
                 myhome.HRef = "home.aspx?userid=" + Request.QueryString["userid"];
+                add.HRef = "AddRecipe.aspx?userid=" + Request.QueryString["userid"];
 
                 AccountServiceReference.AccountServiceClient account_proxy = new AccountServiceReference.AccountServiceClient();
                 AccountServiceReference.Users current_user = account_proxy.GetUserDetail(Convert.ToInt32(Request.QueryString["userid"]));
@@ -24,8 +25,9 @@ namespace WebClient
                 account_proxy.Close();
 
                 RecipeServiceReference.RecipeServiceClient proxy = new RecipeServiceReference.RecipeServiceClient();
-                RecipeServiceReference.Recipe[] recipeList = proxy.GetAllRecipes();
+                RecipeServiceReference.Recipe[] recipeList = proxy.GetAllRecipes(Convert.ToInt32(Request.QueryString["userid"]));
                 int r = 0, c = 0;
+                Panel1.Controls.Clear();
                 HtmlGenericControl row = new HtmlGenericControl("div");
                 row.ID = "row" + (++r).ToString();
                 row.Attributes.Add("runat", "server");
@@ -147,6 +149,10 @@ namespace WebClient
                 }
                 proxy.Close();
             }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
         protected void getRecipe(object sender, EventArgs e, string ID,string userid)
         {
@@ -165,6 +171,10 @@ namespace WebClient
                 Response.Redirect("home.aspx?userid="+ Request.QueryString["userid"]);
                 proxy.Close();
             }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
         protected void addDislike(object sender, EventArgs e, string ID)
         {
@@ -178,6 +188,172 @@ namespace WebClient
                 }*/
                 Response.Redirect("home.aspx?userid=" + Request.QueryString["userid"]);
                 proxy.Close();
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
+        }
+        protected void Search(object sender, EventArgs e)
+        {
+            if(searchtext.Value != null)
+            {
+                RecipeServiceReference.RecipeServiceClient proxy = new RecipeServiceReference.RecipeServiceClient();
+                RecipeServiceReference.Recipe[] recipeList = proxy.Search(searchtext.Value.ToString());
+                int r = 0, c = 0;
+                //Panel1.Controls.Clear();
+                HtmlGenericControl row = new HtmlGenericControl("div");
+                row.ID = "row" + (++r).ToString();
+                row.Attributes.Add("runat", "server");
+                row.Attributes.Add("class", "row");
+                row.Visible = true;
+                if (recipeList != null)
+                {
+                    for (int j = 0; j < recipeList.Length; j++)
+                    {
+                        Label1.Text += " "+ recipeList[j].Title+" ";
+                    }
+                    int i;
+                    for (i = 0; i < recipeList.Length; i++)
+                    {
+                        HtmlGenericControl col = new HtmlGenericControl("div");
+                        col.ID = "col" + (++c).ToString();
+                        col.Attributes.Add("runat", "server");
+                        col.Attributes.Add("class", "col-xl-3 p-1");
+                        col.Visible = true;
+
+                        HtmlGenericControl card = new HtmlGenericControl("div");
+                        card.ID = (recipeList[i].Id).ToString();
+                        card.Attributes.Add("runat", "server");
+                        card.Attributes.Add("class", "card");
+                        card.Attributes.Add("style", "width:300px");
+                        card.Visible = true;
+
+                        HtmlGenericControl card_h = new HtmlGenericControl("div");      //Card-header
+                        card_h.Attributes.Add("class", "card-header bg-light");
+                        card_h.InnerText = (recipeList[i].Title).ToString();
+                        card_h.Visible = true;
+
+                        HtmlGenericControl card_b = new HtmlGenericControl("div");      //Card-body
+                        card_b.Attributes.Add("class", "card-body");
+                        System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
+                        img.ImageUrl = "~/Images/" + (recipeList[i].Image).ToString();
+                        img.Attributes.Add("class", "card-img-top imgThumbnail");
+                        img.Attributes.Add("alt", "No Image Available");
+                        card_b.Controls.Add(img);
+                        card_b.Visible = true;
+
+                        Label likeLabel = new Label();
+                        likeLabel.ForeColor = Color.FromArgb(50, 205, 50);
+                        likeLabel.Text = "Likes: " + recipeList[i].Likes.ToString() + "\t";
+                        Label dislikeLabel = new Label();
+                        dislikeLabel.Text = "Dislikes: " + recipeList[i].Dislikes.ToString();
+                        dislikeLabel.ForeColor = Color.FromArgb(255, 0, 56);
+                        card_b.Controls.Add(likeLabel);
+                        card_b.Controls.Add(dislikeLabel);
+
+                        HtmlGenericControl card_f = new HtmlGenericControl("div");      //Card-footer
+                        card_f.Attributes.Add("class", "card-footer text-center");
+                        card_f.Visible = true;
+
+                        HtmlGenericControl buttonGroup = new HtmlGenericControl("div");     //Button-Group
+                        buttonGroup.Attributes.Add("class", "btn-group");
+                        buttonGroup.Attributes.Add("role", "group");
+
+                        Button viewDetails = new Button();                                          //viewDetails button
+                        viewDetails.Attributes.Add("rid", (recipeList[i].Id).ToString());
+                        viewDetails.Text = "View Details";
+                        viewDetails.Attributes.Add("class", "btn btn-outline-primary btn-sm");
+                        string rid = ((recipeList[i].Id).ToString());
+                        viewDetails.Click += new EventHandler((s1, e1) => getRecipe(sender, e, rid, Request.QueryString["userid"]));
+                        viewDetails.Visible = true;
+
+                        Button like = new Button();                                          //likes button
+                        like.Attributes.Add("rid", (recipeList[i].Id).ToString());
+                        like.Attributes.Add("class", "btn btn-outline-success btn-sm");
+                        like.Click += new EventHandler((s1, e1) => addLike(sender, e, rid));
+                        like.Text = "Like";
+                        like.Visible = true;
+
+                        Button dislike = new Button();                                          //dislikes button
+                        dislike.Attributes.Add("rid", (recipeList[i].Id).ToString());
+                        dislike.Attributes.Add("class", "btn btn-outline-danger btn-sm");
+                        dislike.Click += new EventHandler((s1, e1) => addDislike(sender, e, rid));
+                        dislike.Text = "Dislike";
+                        dislike.Visible = true;
+
+
+                        buttonGroup.Controls.Add(viewDetails);
+                        buttonGroup.Controls.Add(like);
+                        buttonGroup.Controls.Add(dislike);
+                        card_f.Controls.Add(buttonGroup);
+
+                        card.Controls.Add(card_h);
+                        card.Controls.Add(card_b);
+                        card.Controls.Add(card_f);
+
+                        col.Controls.Add(card);
+                        row.Controls.Add(col);
+                        if ((i + 1) % 4 == 0)
+                        {
+                            Panel1.Controls.Add(row);
+                            row = new HtmlGenericControl("div");
+                            row.ID = "row" + (++r).ToString();
+                            row.Attributes.Add("runat", "server");
+                            row.Attributes.Add("class", "row");
+                            row.Visible = true;
+                        }
+                    }
+                    if (i % 4 != 0)
+                        Panel1.Controls.Add(row);
+                    Label1.Text += "Found";
+                }
+                else
+                {
+                    Label1.Text = "Not found";
+                }
+                proxy.Close();
+            }
+        }
+
+        protected void ViewProfile_Click(object sender, EventArgs e)
+        {
+            if(Request.QueryString["userid"]!=null)
+            {
+                AccountServiceReference.AccountServiceClient proxy = new AccountServiceReference.AccountServiceClient("BasicHttpBinding_IAccountService");
+                int id = Int32.Parse(Request.QueryString["userid"]);
+                AccountServiceReference.Users fetchu = proxy.GetUserDetail(id);
+                uname.Text = fetchu.name;
+                emailid.Text = fetchu.email;
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$(document).ready(function(){$('#myModal').modal();});", true);
+                upmodal.Update();
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
+        }
+
+        protected void Update(object sender, EventArgs e)
+        {
+            if (Request.QueryString["userid"] != null)
+            {
+                AccountServiceReference.AccountServiceClient proxy = new AccountServiceReference.AccountServiceClient("BasicHttpBinding_IAccountService");
+                AccountServiceReference.Users updateu = new AccountServiceReference.Users();
+                updateu.ID = Int32.Parse(Request.QueryString["userid"]);
+                updateu.name = uname.Text;
+                updateu.email = emailid.Text;
+
+                proxy.UpdateUserDetails(updateu);
+                string url = "Home.aspx?";
+                url += "userid=" + Server.UrlEncode(updateu.ID.ToString());
+                Response.Redirect(url);
+                //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$(document).ready(function(){$('#myModal').modal('hide');});", true);
+                //upmodal.Update();
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
             }
         }
     }

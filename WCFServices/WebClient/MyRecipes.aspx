@@ -36,9 +36,10 @@
                 <img id="sitelogo" style="height:40px;width:40px" src="/Images/sitelogo.jpg" alt="No image">
                 Zaiyka
                 <a href="" class="btn btn-light" runat="server" id="myhome"><i class="fas fa-home"></i> Home</a>
+                <a href="#" class="btn btn-light" runat="server" id="add"><i class="fas fa-pizza-slice"></i> Add Recipes</a>
                 <a href="" class="btn btn-light" runat="server" id="myrecipes"><i class="fas fa-box-open"></i> My Recipes</a>
-                <a href="#" class="btn btn-light" runat="server"  id="profile"><i class="fas fa-user-alt"></i> Profile</a>
-                <a href="#" class="btn btn-light" runat="server" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="#" class="btn btn-light" runat="server"  id="ViewProfile" onserverclick="ViewProfile_Click"><i class="fas fa-user-alt"></i> Profile</a>
+                <a href="Login.aspx" class="btn btn-light" runat="server" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </h2>
     </header>
     <form id="form1" runat="server">
@@ -73,6 +74,37 @@
             </asp:Panel>
         </div>
     <asp:Panel ID="Panel2" runat="server"></asp:Panel>
+    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><asp:Label ID="UserProfile" runat="server" Text="Profile"></asp:Label></h4>
+                                    <button type="button" class="close" data-dismis="modal" aria-hidden="true">&times;</button>
+                                    
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group">
+                                        <asp:Label ID="name" class="col-form-label" runat="server" Text="Name:"></asp:Label>
+                                        <asp:TextBox ID="uname" class="form-control" runat="server" type="Text" ></asp:TextBox>
+                                    </div>
+                                    <div class="input-group">
+                                        <asp:Label ID="email" class="col-form-label" runat="server" Text="Email:"></asp:Label>
+                                        <asp:TextBox ID="emailid" class="form-control" runat="server" type="email" ></asp:TextBox>
+                                    </div>
+                                    <div class="input-group">
+                                        <asp:Button ID="update" class="btn btn-success" runat="server" Text="Update" OnClick="Update" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>    
+            </div>
     </form>
     </body>
 </html>

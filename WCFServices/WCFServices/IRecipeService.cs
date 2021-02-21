@@ -12,7 +12,16 @@ namespace WCFServices
     public interface IRecipeService
     {
         [OperationContract]
-        List<Recipe> GetAllRecipes();
+        string AddRecipe(Recipe Recipe);
+
+        [OperationContract]
+        Recipe EditRecipe(int Id);
+
+        [OperationContract]
+        string UpdateRecipe(Recipe Recipe);
+
+        [OperationContract]
+        List<Recipe> GetAllRecipes(int userid);
 
         [OperationContract]
         Recipe GetRecipe(int id);
@@ -28,5 +37,8 @@ namespace WCFServices
 
         [OperationContract]
         bool DeleteRecipe(int id);
+
+        [OperationContract]
+        List<Recipe> Search(string searchText);
     }
 }

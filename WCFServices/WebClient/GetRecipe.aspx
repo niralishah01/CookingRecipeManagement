@@ -8,8 +8,8 @@
     <style>
         .imgThumbnail
         {
-            height:200px;
-            width:auto;
+            height:250px;
+            width:400px;
         }
         @media only screen and (max-width:750px){
             .card{
@@ -29,8 +29,8 @@
 <body>
     <header>
         <h2 class="bg-secondary p-2 text-light">
-            <img id="sitelogo" style="height:40px;width:40px" src="/Images/sitelogo.jpg">
-            Zaiyka
+            <img id="sitelogo" style="height:40px;width:40px" src="/Images/sitelogo.jpg"/>
+            Zaika
         </h2>
     </header>
     <form id="form1" runat="server">
@@ -44,13 +44,53 @@
                         </div>
                         <div class="card-footer bg-light" id="card_f" runat="server">
                             <center>
-                                <a href="" class="btn btn-outline-primary text-decoration-none btn-sm" value="Button" runat="server" id="back" >Back</a>
+                                <a href="" class="btn btn-outline-primary text-decoration-none btn-sm" id="back" value="Button" runat="server" >Back</a>
+                                <asp:Button ID="button3" class="btn btn-outline-primary text-decoration-none btn-sm" Text="Show Comments" OnClick="button3_Click" runat="server" UseSubmitBehavior="false"/>
+                                <a href="#" id="button1" class="btn btn-outline-primary text-decoration-none btn-sm" value="Button" runat="server" >Add Comment</a>
                             </center>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog">
+    
+                            <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Add Comment</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                                <asp:Textbox id="TextArea1" class="form-control" placeholder="Enter Comment" runat="server" required="required" TextMode="MultiLine" Rows="4"></asp:Textbox>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <asp:Button ID="button2" class="btn btn-success" Text="ADD" OnClick="button2_Click" runat="server"/>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </div>
+      
+                                   </div>
+                            </div>
+                            <!--End of Modal-->
                         </div>
                     </div>
                 </div>
             </div>
+            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         </div>
+
+        <br/>
+        <div class="container p-1">
+            <asp:Panel ID="Panel1" runat="server">
+                <h2 style="color:blue;">Recipe Comments</h2>
+                <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+            </asp:Panel>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $("#button1").click(function(){
+                    $("#myModal").modal();
+                });
+            });
+        </script>
     </form>
 </body>
 </html>

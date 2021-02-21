@@ -17,6 +17,7 @@ namespace WebClient
             {
                 myrecipes.HRef = "MyRecipes.aspx?userid=" + Request.QueryString["userid"];
                 myhome.HRef = "home.aspx?userid=" + Request.QueryString["userid"];
+                add.HRef = "AddRecipe.aspx?userid=" + Request.QueryString["userid"];
 
                 AccountServiceReference.AccountServiceClient account_proxy = new AccountServiceReference.AccountServiceClient();
                 AccountServiceReference.Users current_user = account_proxy.GetUserDetail(Convert.ToInt32(Request.QueryString["userid"]));
@@ -229,6 +230,46 @@ namespace WebClient
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "deleteModal", "$(document).ready(function(){$('#deleteModal').modal('hide');});", true);
                 upmodal.Update();
                 Response.Redirect("MyRecipes.aspx?userid=" + Request.QueryString["userid"]);
+            }
+        }
+        protected void ViewProfile_Click(object sender, EventArgs e)
+        {
+            if (Request.QueryString["userid"] != null)
+            {
+                AccountServiceReference.AccountServiceClient proxy = new AccountServiceReference.AccountServiceClient("BasicHttpBinding_IAccountService");
+                int id = Int32.Parse(Request.QueryString["userid"]);
+                AccountServiceReference.Users fetchu = proxy.GetUserDetail(id);
+                uname.Text = fetchu.name;
+                emailid.Text = fetchu.email;
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$(document).ready(function(){$('#myModal').modal();});", true);
+                upmodal.Update();
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
+        }
+
+        protected void Update(object sender, EventArgs e)
+        {
+            if (Request.QueryString["userid"] != null)
+            {
+                AccountServiceReference.AccountServiceClient proxy = new AccountServiceReference.AccountServiceClient("BasicHttpBinding_IAccountService");
+                AccountServiceReference.Users updateu = new AccountServiceReference.Users();
+                updateu.ID = Int32.Parse(Request.QueryString["userid"]);
+                updateu.name = uname.Text;
+                updateu.email = emailid.Text;
+
+                proxy.UpdateUserDetails(updateu);
+                string url = "MyRecipes.aspx?";
+                url += "userid=" + Server.UrlEncode(updateu.ID.ToString());
+                Response.Redirect(url);
+                //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$(document).ready(function(){$('#myModal').modal('hide');});", true);
+                //upmodal.Update();
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
             }
         }
     }

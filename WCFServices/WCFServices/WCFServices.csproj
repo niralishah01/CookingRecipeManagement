@@ -46,6 +46,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comments.cs" />
     <Compile Include="CommentService.cs" />
     <Compile Include="IAccountService.cs" />
     <Compile Include="ICommentService.cs" />

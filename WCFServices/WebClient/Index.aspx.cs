@@ -14,8 +14,9 @@ namespace WebClient
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            AccountServiceReference.AccountServiceClient client = new AccountServiceReference.AccountServiceClient();
             RecipeServiceReference.RecipeServiceClient proxy = new RecipeServiceReference.RecipeServiceClient();
-            RecipeServiceReference.Recipe[] recipeList = proxy.GetAllRecipes();
+            RecipeServiceReference.Recipe[] recipeList = proxy.GetAllRecipes(-1);
             int r=0,c=0;
             HtmlGenericControl row = new HtmlGenericControl("div");
             row.ID = "row" + (++r).ToString();
@@ -57,17 +58,9 @@ namespace WebClient
 
                     card_h.Visible = true; card_b.Visible = true; card_f.Visible = true;
 
-                    Button viewDetails = new Button();
-                    viewDetails.Attributes.Add ("rid", (recipeList[i].Id).ToString());
-                    viewDetails.Text = "View Details";
-                    viewDetails.Attributes.Add("class", "btn btn-primary align-self-center");
-                    string s = ((recipeList[i].Id).ToString());
-                    //viewDetails.Click += (s2, e2) => getRecipe(s2, e2, s );
-                    //viewDetails.Click += delegate (object s1, EventArgs e1) { getRecipe(s1, e1, s ); };
-                    viewDetails.Click += new EventHandler((s1,e1)=> getRecipe(sender, e, s ));
-                    viewDetails.Visible = true;
+                    AccountServiceReference.Users user = client.GetUserDetail(Convert.ToInt32(recipeList[i].UserID));
+                    card_f.InnerHtml = "By " + user.name;
 
-                    card_f.Controls.Add(viewDetails);
                     card.Controls.Add(card_h);
                     card.Controls.Add(card_b);
                     card.Controls.Add(card_f);

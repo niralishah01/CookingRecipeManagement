@@ -12,6 +12,9 @@ namespace WCFServices
     public interface ICommentService
     {
         [OperationContract]
-        void DoWork();
+        string AddComment(Comments comment);
+
+        [OperationContract]
+        IEnumerable<Comments> ViewComments(int recipeId);
     }
 }

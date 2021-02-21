@@ -206,11 +206,29 @@ namespace WebClient.RecipeServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RecipeServiceReference.IRecipeService")]
     public interface IRecipeService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetAllRecipes", ReplyAction="http://tempuri.org/IRecipeService/GetAllRecipesResponse")]
-        WebClient.RecipeServiceReference.Recipe[] GetAllRecipes();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/AddRecipe", ReplyAction="http://tempuri.org/IRecipeService/AddRecipeResponse")]
+        string AddRecipe(WebClient.RecipeServiceReference.Recipe Recipe);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/AddRecipe", ReplyAction="http://tempuri.org/IRecipeService/AddRecipeResponse")]
+        System.Threading.Tasks.Task<string> AddRecipeAsync(WebClient.RecipeServiceReference.Recipe Recipe);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/EditRecipe", ReplyAction="http://tempuri.org/IRecipeService/EditRecipeResponse")]
+        WebClient.RecipeServiceReference.Recipe EditRecipe(int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/EditRecipe", ReplyAction="http://tempuri.org/IRecipeService/EditRecipeResponse")]
+        System.Threading.Tasks.Task<WebClient.RecipeServiceReference.Recipe> EditRecipeAsync(int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/UpdateRecipe", ReplyAction="http://tempuri.org/IRecipeService/UpdateRecipeResponse")]
+        string UpdateRecipe(WebClient.RecipeServiceReference.Recipe Recipe);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/UpdateRecipe", ReplyAction="http://tempuri.org/IRecipeService/UpdateRecipeResponse")]
+        System.Threading.Tasks.Task<string> UpdateRecipeAsync(WebClient.RecipeServiceReference.Recipe Recipe);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetAllRecipes", ReplyAction="http://tempuri.org/IRecipeService/GetAllRecipesResponse")]
-        System.Threading.Tasks.Task<WebClient.RecipeServiceReference.Recipe[]> GetAllRecipesAsync();
+        WebClient.RecipeServiceReference.Recipe[] GetAllRecipes(int userid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetAllRecipes", ReplyAction="http://tempuri.org/IRecipeService/GetAllRecipesResponse")]
+        System.Threading.Tasks.Task<WebClient.RecipeServiceReference.Recipe[]> GetAllRecipesAsync(int userid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetRecipe", ReplyAction="http://tempuri.org/IRecipeService/GetRecipeResponse")]
         WebClient.RecipeServiceReference.Recipe GetRecipe(int id);
@@ -241,6 +259,12 @@ namespace WebClient.RecipeServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/DeleteRecipe", ReplyAction="http://tempuri.org/IRecipeService/DeleteRecipeResponse")]
         System.Threading.Tasks.Task<bool> DeleteRecipeAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/Search", ReplyAction="http://tempuri.org/IRecipeService/SearchResponse")]
+        WebClient.RecipeServiceReference.Recipe[] Search(string searchText);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/Search", ReplyAction="http://tempuri.org/IRecipeService/SearchResponse")]
+        System.Threading.Tasks.Task<WebClient.RecipeServiceReference.Recipe[]> SearchAsync(string searchText);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -270,12 +294,36 @@ namespace WebClient.RecipeServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public WebClient.RecipeServiceReference.Recipe[] GetAllRecipes() {
-            return base.Channel.GetAllRecipes();
+        public string AddRecipe(WebClient.RecipeServiceReference.Recipe Recipe) {
+            return base.Channel.AddRecipe(Recipe);
         }
         
-        public System.Threading.Tasks.Task<WebClient.RecipeServiceReference.Recipe[]> GetAllRecipesAsync() {
-            return base.Channel.GetAllRecipesAsync();
+        public System.Threading.Tasks.Task<string> AddRecipeAsync(WebClient.RecipeServiceReference.Recipe Recipe) {
+            return base.Channel.AddRecipeAsync(Recipe);
+        }
+        
+        public WebClient.RecipeServiceReference.Recipe EditRecipe(int Id) {
+            return base.Channel.EditRecipe(Id);
+        }
+        
+        public System.Threading.Tasks.Task<WebClient.RecipeServiceReference.Recipe> EditRecipeAsync(int Id) {
+            return base.Channel.EditRecipeAsync(Id);
+        }
+        
+        public string UpdateRecipe(WebClient.RecipeServiceReference.Recipe Recipe) {
+            return base.Channel.UpdateRecipe(Recipe);
+        }
+        
+        public System.Threading.Tasks.Task<string> UpdateRecipeAsync(WebClient.RecipeServiceReference.Recipe Recipe) {
+            return base.Channel.UpdateRecipeAsync(Recipe);
+        }
+        
+        public WebClient.RecipeServiceReference.Recipe[] GetAllRecipes(int userid) {
+            return base.Channel.GetAllRecipes(userid);
+        }
+        
+        public System.Threading.Tasks.Task<WebClient.RecipeServiceReference.Recipe[]> GetAllRecipesAsync(int userid) {
+            return base.Channel.GetAllRecipesAsync(userid);
         }
         
         public WebClient.RecipeServiceReference.Recipe GetRecipe(int id) {
@@ -316,6 +364,14 @@ namespace WebClient.RecipeServiceReference {
         
         public System.Threading.Tasks.Task<bool> DeleteRecipeAsync(int id) {
             return base.Channel.DeleteRecipeAsync(id);
+        }
+        
+        public WebClient.RecipeServiceReference.Recipe[] Search(string searchText) {
+            return base.Channel.Search(searchText);
+        }
+        
+        public System.Threading.Tasks.Task<WebClient.RecipeServiceReference.Recipe[]> SearchAsync(string searchText) {
+            return base.Channel.SearchAsync(searchText);
         }
     }
 }

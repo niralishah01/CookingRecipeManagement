@@ -122,7 +122,25 @@ namespace WCFServices
         }
         public void UpdateUserDetails(Users u)
         {
-
+            Users user = new Users();
+            try
+            {
+                command = "update Users set name=@name,email=@email where ID=@id";
+                cmd = new SqlCommand(command, conn);
+                cmd.Parameters.AddWithValue("@id", u.ID);
+                cmd.Parameters.AddWithValue("@name", u.name);
+                cmd.Parameters.AddWithValue("@email", u.email);
+                using (conn)
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            //return user;
         }
 
         public void Logout()
