@@ -26,8 +26,7 @@ namespace WebClient
             else
             {
                 string url = "Home.aspx?";
-                url += "userid=" + Server.UrlEncode(loguser.ID.ToString()) + "&";
-                url += "name=" + Server.UrlEncode(loguser.name);
+                url += "userid=" + Server.UrlEncode(loguser.ID.ToString());
                 Response.Redirect(url);
             }
                 //Label3.Text = loguser.name;

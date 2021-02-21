@@ -11,7 +11,6 @@
     
     <style>
         body{
-            background:linear-gradient(cyan,yellow);
             background-position:center;
             background-repeat:no-repeat;
             background-size:cover;
@@ -27,9 +26,12 @@
         <center>
         <div class="bg-white centerd p-2 w-25 rounded shadow-lg">
         <form id="form1" runat="server">
-            <a class="btn btn-primary" href="Index.aspx">Home</a><br />
-            <h3>Register yourself here...</h3><br />
-            <asp:Label ID="Label4" style="font-size:1vw;" runat="server" Text="" ForeColor="Red"></asp:Label>
+            <div class="bg-dark modal-title">
+                <a class="btn btn-dark" href="Index.aspx">Home</a><br />
+            </div>
+            
+            <h3 style="font-size:1.5vw; color:blue">Register yourself here...</h3><br />
+            <asp:Label ID="Label4" style="font-size:1vw;" runat="server" Text="" ForeColor="Red" Font-Bold="true"></asp:Label>
             <br />
             <div class="input-group">
                 <asp:Label ID="Label1" style="font-size:1.2vw;" runat="server" Text="Name:"></asp:Label>
@@ -45,9 +47,7 @@
             <div class="input-group">
                 <asp:Label ID="Label3" style="font-size:1.2vw;" runat="server" Text="Password:" required></asp:Label>
                 <asp:TextBox ID="TextBox3" type="password"  class="form-control" style="font-size:1.2vw;"  runat="server"></asp:TextBox>
-                    <div class="input-group-append">
-                        <button id="show" class="btn btn-primary"><span class="fa fa-eye-slash icon"></span></button>
-                    </div>
+                   
             </div>
             
             <br />
@@ -58,18 +58,7 @@
         </div>
             </center>
     </div>    
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(#show).hover(function showp() {
-                $(#TextBox3).attr('type', 'text');
-                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-            },
-                function() {
-                    $(#TextBox3).attr('type', 'password');
-                    $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-                });
-        })
-    </script>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>

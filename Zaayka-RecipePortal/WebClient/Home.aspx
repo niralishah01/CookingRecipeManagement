@@ -30,23 +30,28 @@
 </head>
 <body>
     
-    <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
+    
         <header>
         <h2 class="bg-secondary p-2 text-light">
                 <img id="sitelogo" style="height:40px;width:40px" src="/Images/sitelogo.jpg" alt="No image">
-                Zaiyka&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="ViewProfile" runat="server" Height="47px" Text="Profile" Width="143px" OnClick="ViewProfile_Click" />
-                
-            &nbsp;&nbsp;&nbsp;
-                 <a href="Index.aspx" class="btn btn-light">&nbsp; Logout</a>
+                Zaiyka
+                <input type="text" runat="server" class="form-control rounded" id="searchtext" placeholder="Enter recipe title or category or user made that recipe"/>
+                <a href="#" class="btn btn-light diable-a" runat="server" id="search" onserverclick="Search"><i class="fas fa-search"></i></a>
+                <a href="" class="btn btn-light" runat="server" id="myhome"><i class="fas fa-home"></i> Home</a>
+                <a href="" class="btn btn-light" runat="server" id="myrecipes"><i class="fas fa-box-open"></i> My Recipes</a>
+                <a href="" class="btn btn-light" runat="server" id="add" onserverclick="add_ServerClick"><i class="fas fa-pizza-slice"></i> Add Recipes</a>
+                <a href="" class="btn btn-light" runat="server"  id="ViewProfile" onserverclick="ViewProfile_Click"><i class="fas fa-user-alt"></i> Profile</a>
+                <a href="Login.aspx" class="btn btn-light" runat="server" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </h2>
     </header>
-        
+      <form id="form1" runat="server">
+          <h2 runat="server" id="title"></h2>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager> 
         <div class="container p-1">
             <asp:Panel ID="Panel1" runat="server"></asp:Panel>
         </div>
+          <asp:Label ID="Label1" runat="server" ></asp:Label>
         <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <asp:UpdatePanel ID="upmodal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
@@ -79,6 +84,16 @@
                 </div>    
             </div>
     </form>
+    <script>
+        let searchbox = document.getElementById("searchtext");
+        let button = document.getElementById("search");
+        if (searchbox != null) {
+            button.classList.remove('diable-a');
+        }
+        else {
+            button.classList.add('diable-a');
+        }
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
