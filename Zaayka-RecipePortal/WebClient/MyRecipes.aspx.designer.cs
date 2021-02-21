@@ -11,7 +11,7 @@ namespace WebClient
 {
 
 
-    public partial class Home
+    public partial class MyRecipes
     {
 
         /// <summary>
@@ -33,22 +33,13 @@ namespace WebClient
         protected global::System.Web.UI.HtmlControls.HtmlAnchor myrecipes;
 
         /// <summary>
-        /// add control.
+        /// profile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor add;
-
-        /// <summary>
-        /// ViewProfile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor ViewProfile;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor profile;
 
         /// <summary>
         /// logout control.
@@ -69,15 +60,6 @@ namespace WebClient
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// title control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl title;
-
-        /// <summary>
         /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
@@ -85,6 +67,15 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
+        /// title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl title;
 
         /// <summary>
         /// Panel1 control.
@@ -96,15 +87,6 @@ namespace WebClient
         protected global::System.Web.UI.WebControls.Panel Panel1;
 
         /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
         /// upmodal control.
         /// </summary>
         /// <remarks>
@@ -114,57 +96,66 @@ namespace WebClient
         protected global::System.Web.UI.UpdatePanel upmodal;
 
         /// <summary>
-        /// UserProfile control.
+        /// modal_header control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UserProfile;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modal_header;
 
         /// <summary>
-        /// name control.
+        /// modal_title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label name;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modal_title;
 
         /// <summary>
-        /// uname control.
+        /// modal_body control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox uname;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modal_body;
 
         /// <summary>
-        /// email control.
+        /// modal_footer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label email;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modal_footer;
 
         /// <summary>
-        /// emailid control.
+        /// modal_yes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox emailid;
+        protected global::System.Web.UI.WebControls.Button modal_yes;
 
         /// <summary>
-        /// update control.
+        /// modal_no control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button update;
+        protected global::System.Web.UI.WebControls.Button modal_no;
+
+        /// <summary>
+        /// Panel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel2;
     }
 }

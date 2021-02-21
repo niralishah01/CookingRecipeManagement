@@ -24,6 +24,7 @@ namespace ConsoleHost
             Console.ReadLine();
             host.Close();
             host1.Close();
+            host2.Close();
         }
     }
 }

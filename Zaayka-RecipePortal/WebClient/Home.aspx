@@ -35,8 +35,6 @@
         <h2 class="bg-secondary p-2 text-light">
                 <img id="sitelogo" style="height:40px;width:40px" src="/Images/sitelogo.jpg" alt="No image">
                 Zaiyka
-                <input type="text" runat="server" class="form-control rounded" id="searchtext" placeholder="Enter recipe title or category or user made that recipe"/>
-                <a href="#" class="btn btn-light diable-a" runat="server" id="search" onserverclick="Search"><i class="fas fa-search"></i></a>
                 <a href="" class="btn btn-light" runat="server" id="myhome"><i class="fas fa-home"></i> Home</a>
                 <a href="" class="btn btn-light" runat="server" id="myrecipes"><i class="fas fa-box-open"></i> My Recipes</a>
                 <a href="" class="btn btn-light" runat="server" id="add" onserverclick="add_ServerClick"><i class="fas fa-pizza-slice"></i> Add Recipes</a>

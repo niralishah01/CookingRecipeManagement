@@ -20,7 +20,7 @@ namespace WCFServices
         [OperationContract]
         string UpdateRecipe(Recipe Recipe);
         [OperationContract]
-        List<Recipe> GetAllRecipes();
+        List<Recipe> GetAllRecipes(int userId);
 
         [OperationContract]
         Recipe GetRecipe(int id);
@@ -35,5 +35,7 @@ namespace WCFServices
 
         [OperationContract]
         bool DeleteRecipe(int id);
+        [OperationContract]
+        List<Recipe> Search(string searchText);
     }
 }

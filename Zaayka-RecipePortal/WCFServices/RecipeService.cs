@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
 using System.Configuration;
+using System.Data.SqlClient;
 namespace WCFServices
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "RecipeService" in both code and config file together.
@@ -97,14 +93,14 @@ namespace WCFServices
                 {
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = con;
-                    cmd.CommandText = "Update Recipes set title= @title, ingredients= @ingredients, method= @method, category= @category, otherdetails= @otherdetails where Id= @Id";
+                    cmd.CommandText = "Update Recipes set title= @title, ingredients= @ingredients, method= @method, category= @category, otherdetails= @otherdetails, image=@image where Id= @Id";
                     cmd.Parameters.AddWithValue("@Id", Recipe.Id); //add all parameters
                     cmd.Parameters.AddWithValue("@title", Recipe.Title); //add all parameters
                     cmd.Parameters.AddWithValue("@ingredients", Recipe.Ingredients); //add all parameters
                     cmd.Parameters.AddWithValue("@method", Recipe.Method); //add all parameters
                     cmd.Parameters.AddWithValue("@category", Recipe.Category); //add all parameters
                     cmd.Parameters.AddWithValue("@otherdetails", Recipe.Otherdetails); //add all parameters
-
+                    cmd.Parameters.AddWithValue("@image", Recipe.Image);
                     con.Open();
                     int rows = cmd.ExecuteNonQuery();
                     if (rows != 0)
@@ -204,13 +200,14 @@ namespace WCFServices
             return false;
         }
 
-        public List<Recipe> GetAllRecipes()
+        public List<Recipe> GetAllRecipes(int userId)
         {
             SqlConnection conn = new SqlConnection(connectionstring);
             Console.WriteLine("Connection established, Connecction state: " + conn.State);
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "select * from recipes";
+            cmd.CommandText = "select * from recipes where userID != @uId";
+            cmd.Parameters.AddWithValue("@uID", userId);
             List<Recipe> recipes = new List<Recipe>();
             try
             {
@@ -384,6 +381,131 @@ namespace WCFServices
                 throw new Exception(err.Message);
             }
             Console.WriteLine("Connection disconnected, Connection State: " + conn.State);
+            return recipes;
+        }
+        public List<Recipe> Search(string searchText)
+        {
+            string newconnectionstring = connectionstring + ";MultipleActiveResultSets=true;";
+            Console.WriteLine(newconnectionstring);
+            List<Recipe> recipes = new List<Recipe>();
+            SqlConnection conn = new SqlConnection(newconnectionstring);
+            Console.WriteLine("Connection established, Connecction state: " + conn.State);
+
+            //Search recipes based on username
+            SqlCommand cmd1 = new SqlCommand();
+            cmd1.Connection = conn;
+            cmd1.CommandText = "select * from users where name=@Name";
+            SqlParameter para1 = new SqlParameter("@Name", searchText);
+            cmd1.Parameters.Add(para1);
+
+            //Search recipes based on title
+            SqlCommand cmd2 = new SqlCommand();
+            cmd2.Connection = conn;
+            cmd2.CommandText = "select * from recipes where title=@Title";
+            SqlParameter para2 = new SqlParameter("@Title", searchText);
+            cmd2.Parameters.Add(para2);
+
+            //Search recipes based on Category
+            SqlCommand cmd3 = new SqlCommand();
+            cmd3.Connection = conn;
+            cmd3.CommandText = "select * from recipes where category=@Category";
+            SqlParameter para3 = new SqlParameter("@Category", searchText);
+            cmd3.Parameters.Add(para3);
+            try
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    Console.WriteLine("Connection is opened, Connection state: " + conn.State);
+                    SqlDataReader rdr1 = cmd1.ExecuteReader();
+                    if (rdr1.HasRows)
+                    {
+                        Console.WriteLine("The database contains some rows based on user");
+                        Recipe recipe;
+                        while (rdr1.Read())
+                        {
+                            SqlCommand cmd4 = new SqlCommand();
+                            cmd4.Connection = conn;
+                            cmd4.CommandText = "select * from recipes where userid=@Userid";
+                            SqlParameter para4 = new SqlParameter("@Userid", rdr1["ID"]);
+                            cmd4.Parameters.Add(para4);
+                            SqlDataReader rdr4 = cmd4.ExecuteReader();
+                            while (rdr4.Read())
+                            {
+                                recipe = new Recipe();
+                                recipe.Id = Convert.ToInt32(rdr4["ID"]);
+                                recipe.Title = rdr4["title"].ToString();
+                                recipe.Ingredients = rdr4["ingredients"].ToString();
+                                recipe.Method = rdr4["method"].ToString();
+                                recipe.Image = rdr4["image"].ToString();
+                                recipe.Category = rdr4["category"].ToString();
+                                recipe.Otherdetails = rdr4["otherdetails"].ToString();
+                                recipe.UserID = Convert.ToInt32(rdr4["userID"]);
+                                recipe.Likes = Convert.ToInt32(rdr4["likes"]);
+                                recipe.Dislikes = Convert.ToInt32(rdr4["dislikes"]);
+                                recipes.Add(recipe);
+                            }
+                            rdr4.Close();
+                        }
+                        rdr1.Close();
+                    }
+                    SqlDataReader rdr2 = cmd2.ExecuteReader();
+                    if (rdr2.HasRows)
+                    {
+                        Console.WriteLine("The database does not contain rows based on title");
+                        Recipe recipe;
+                        while (rdr2.Read())
+                        {
+                            recipe = new Recipe();
+                            recipe.Id = Convert.ToInt32(rdr2["ID"]);
+                            recipe.Title = rdr2["title"].ToString();
+                            recipe.Ingredients = rdr2["ingredients"].ToString();
+                            recipe.Method = rdr2["method"].ToString();
+                            recipe.Image = rdr2["image"].ToString();
+                            recipe.Category = rdr2["category"].ToString();
+                            recipe.Otherdetails = rdr2["otherdetails"].ToString();
+                            recipe.UserID = Convert.ToInt32(rdr2["userID"]);
+                            recipe.Likes = Convert.ToInt32(rdr2["likes"]);
+                            recipe.Dislikes = Convert.ToInt32(rdr2["dislikes"]);
+                            recipes.Add(recipe);
+                        }
+                        rdr2.Close();
+                    }
+                    SqlDataReader rdr3 = cmd3.ExecuteReader();
+                    if (rdr3.HasRows)
+                    {
+                        Console.WriteLine("The database does not contain rows based on category");
+                        Recipe recipe;
+                        while (rdr3.Read())
+                        {
+                            recipe = new Recipe();
+                            recipe.Id = Convert.ToInt32(rdr3["ID"]);
+                            recipe.Title = rdr3["title"].ToString();
+                            recipe.Ingredients = rdr3["ingredients"].ToString();
+                            recipe.Method = rdr3["method"].ToString();
+                            recipe.Image = rdr3["image"].ToString();
+                            recipe.Category = rdr3["category"].ToString();
+                            recipe.Otherdetails = rdr3["otherdetails"].ToString();
+                            recipe.UserID = Convert.ToInt32(rdr3["userID"]);
+                            recipe.Likes = Convert.ToInt32(rdr3["likes"]);
+                            recipe.Dislikes = Convert.ToInt32(rdr3["dislikes"]);
+                            recipes.Add(recipe);
+                        }
+                        rdr3.Close();
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                string Msg = "ERROR: " + err.ToString();
+                Console.WriteLine(Msg);
+                throw new Exception(err.Message);
+            }
+            Console.WriteLine("Connection disconnected, Connection State: " + conn.State);
+            foreach (Recipe r in recipes)
+            {
+                Console.WriteLine(r.Title);
+            }
             return recipes;
         }
     }

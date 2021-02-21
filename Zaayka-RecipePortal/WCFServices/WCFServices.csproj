@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountService.cs" />
+    <Compile Include="Comments.cs" />
     <Compile Include="CommentService.cs" />
     <Compile Include="IAccountService.cs" />
     <Compile Include="ICommentService.cs" />
