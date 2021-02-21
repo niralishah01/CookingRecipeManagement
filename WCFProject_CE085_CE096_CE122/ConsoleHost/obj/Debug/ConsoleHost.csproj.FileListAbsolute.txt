@@ -1,0 +1,11 @@
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\ConsoleHost\bin\Debug\ConsoleHost.exe.config
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\ConsoleHost\bin\Debug\ConsoleHost.exe
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\ConsoleHost\bin\Debug\ConsoleHost.pdb
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\ConsoleHost\bin\Debug\WCFServices.dll
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\ConsoleHost\bin\Debug\WCFServices.pdb
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\ConsoleHost\bin\Debug\WCFServices.dll.config
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\ConsoleHost\obj\Debug\ConsoleHost.csprojAssemblyReference.cache
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\ConsoleHost\obj\Debug\ConsoleHost.csproj.CoreCompileInputs.cache
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\ConsoleHost\obj\Debug\ConsoleHost.csproj.CopyComplete
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\ConsoleHost\obj\Debug\ConsoleHost.exe
+C:\Users\Jinal\source\repos\Zaayka-RecipePortal\ConsoleHost\obj\Debug\ConsoleHost.pdb
